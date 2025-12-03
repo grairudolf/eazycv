@@ -8,43 +8,72 @@
   </head>
   <body>
     <div class="container">
-      <form class="form">
+      <form class="form" id="cv-form">
         <h1>Build Your CV in Minutes</h1>
         <p>Enter your details to create your CV</p>
 
-        <label for="firstName">First Name</label><br>
-        <input type="text" id="firstName" placeholder="John"/><br><br>
+        <div class="form-group">
+          <label for="firstName">First Name</label>
+          <input type="text" id="firstName" placeholder="John" required />
+        </div>
 
-        <label for="secondName">Second Name</label><br>
-        <input type="text" id="secondName" placeholder="Doe"/><br><br>
+        <div class="form-group">
+          <label for="secondName">Second Name</label>
+          <input type="text" id="secondName" placeholder="Doe" required />
+        </div>
 
-        <label for="email">Email</label><br>
-        <input type="text" id="email" placeholder="name@email.com"/><br><br>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" placeholder="name@email.com" />
+        </div>
 
-        <label for="phone">Phone</label><br>
-        <input type="tel" id="phone" placeholder="+237 677 000 123"/><br><br>
+        <div class="form-group">
+          <label for="phone">Phone</label>
+          <input type="tel" id="phone" placeholder="+237 677 000 123" />
+        </div>
 
-        <label for="educ">Education</label><br>
-        <input list="levels" placeholder="Select Your Level Of Education" /><br><br>
+        <div class="form-group">
+          <label for="city">City</label>
+          <input type="text" id="city" placeholder="e.g. Douala" />
+        </div>
 
-        <datalist id="levels">
-          <option value="O/L"></option>
-          <option value="A/L"></option>
-          <option value="Undergraduate"></option>
-          <option value="Postgraduate"></option>
-          <option value="PhD"></option>
-        </datalist>
+        <div class="form-group">
+          <label for="country">Country</label>
+          <input type="text" id="country" placeholder="e.g. Cameroon" />
+        </div>
 
-        <label for="skills">Skills</label><br>
-        <textarea id="skills" placeholder="Write Here....."></textarea><br><br>
+        <div class="form-group">
+          <label for="education">Education Level</label>
+          <input id="education" list="levels" placeholder="Select Your Level Of Education" />
+          <datalist id="levels">
+            <option value="O/L"></option>
+            <option value="A/L"></option>
+            <option value="Undergraduate"></option>
+            <option value="Postgraduate"></option>
+            <option value="PhD"></option>
+          </datalist>
+        </div>
 
-        <label for="exp">Experience</label><br>
-        <textarea id="exp" placeholder="Write Here....."></textarea><br><br>
+        <div class="form-group">
+          <label for="skills">Skills</label>
+          <textarea id="skills" placeholder="e.g. JavaScript, HTML, CSS"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="bio">Short Bio</label>
+          <textarea id="bio" placeholder="A few lines about who you are and what you do..."></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="exp">Experience</label>
+          <textarea id="exp" placeholder="Summarize your experience..."></textarea>
+        </div>
 
         <div class="form__btn">
-          <button>Submit Details</button>
+          <button type="submit">Generate CV</button>
         </div>
       </form>
     </div>
+    <script src="./js/form.js"></script>
   </body>
 </html>
