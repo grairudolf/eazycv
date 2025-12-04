@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles/form.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <form class="form">
+        <h1>Build Your CV in Minutes</h1>
+        <p>Enter your details to create your CV</p>
+
+        <label for="firstName">First Name</label><br>
+        <input type="text" id="firstName" placeholder="John"/><br><br>
+
+        <label for="secondName">Second Name</label><br>
+        <input type="text" id="secondName" placeholder="Doe"/><br><br>
+
+        <label for="email">Email</label><br>
+        <input type="text" id="email" placeholder="name@email.com"/><br><br>
+
+        <label for="phone">Phone</label><br>
+        <input type="tel" id="phone" placeholder="+237 677 000 123"/><br><br>
+
+        <label for="educ">Education</label><br>
+        <input list="levels" placeholder="Select Your Level Of Education" /><br><br>
+
+        <datalist id="levels">
+          <option value="O/L"></option>
+          <option value="A/L"></option>
+          <option value="Undergraduate"></option>
+          <option value="Postgraduate"></option>
+          <option value="PhD"></option>
+        </datalist>
+
+        <label for="skills">Skills</label><br>
+        <textarea id="skills" placeholder="Write Here....."></textarea><br><br>
+
+        <label for="exp">Experience</label><br>
+        <textarea id="exp" placeholder="Write Here....."></textarea><br><br>
+
+        <div class="form__btn">
+          <button>Submit Details</button>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
