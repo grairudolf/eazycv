@@ -47,9 +47,35 @@ body {
   width: 100%;
   max-width: 900px;
   min-height: 1120px;
-  padding: 40px 48px;
+  padding: 40px 48px 56px 64px;
   border-radius: 12px;
   box-shadow: var(--cv-shadow);
+  position: relative;
+  overflow: hidden;
+}
+
+.cv-watermark {
+  position: absolute;
+  right: 24px;
+  bottom: 16px;
+  opacity: 0.25;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.cv-watermark-logo {
+  max-width: 130px;
+  height: auto;
+}
+
+.cv-page::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 6px;
+  height: 100%;
+  background: linear-gradient(to bottom, var(--cv-primary), rgba(31, 111, 212, 0.1));
 }
 
 /* Header */
@@ -109,6 +135,8 @@ body {
     rgba(224, 235, 252, 0.35),
     rgba(255, 255, 255, 0.8)
   );
+  position: relative;
+  z-index: 1;
 }
 
 .cv-section-title {
@@ -266,6 +294,10 @@ body {
     width: 100%;
     max-width: none;
     padding: 24px 32px;
+  }
+
+  .cv-watermark {
+    opacity: 0.45;
   }
 
   .no-print {
