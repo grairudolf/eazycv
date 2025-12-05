@@ -24,6 +24,7 @@
     const city = getValue("city");
     const country = getValue("country");
     const educationLevel = getValue("education");
+    const school = getValue("school");
     const skillsRaw = getValue("skills");
     const bio = getValue("bio");
     const experienceText = getValue("exp");
@@ -57,7 +58,7 @@
         ? [
             {
               degree: educationLevel,
-              institution: "",
+              institution: school || "",
               startDate: "",
               endDate: "",
               description: "",
