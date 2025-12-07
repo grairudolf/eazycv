@@ -22,8 +22,8 @@
                 <li><a href="#" class="nav__link">Contact</a></li>
             </ul>
             <div class="nav__actions">
-                <a href="login.html" class="nav__auth nav__auth--ghost">Login</a>
-                <a href="signup.html" class="nav__auth nav__auth--primary">Sign up</a>
+                <a href="#" class="nav__auth nav__auth--ghost" id="open-login">Login</a>
+                <a href="#" class="nav__auth nav__auth--primary" id="open-signup">Sign up</a>
             </div>
         </nav>
     </header>
@@ -54,11 +54,62 @@
                         <div class="hero-card__line"></div>
                         <div class="hero-card__line"></div>
                         <div class="hero-card__line hero-card__line--faded"></div>
+                         <div class="hero-card__line hero-card__line--name"></div>
+                        <div class="hero-card__line hero-card__line--short"></div>
+                        <div class="hero-card__line"></div>
+                        <div class="hero-card__line"></div>
+                        <div class="hero-card__line hero-card__line--faded"></div>
                     </div>
                 </div>
             </div>
         </section>
     </main>
+
+    <div class="auth-modal" id="login-modal" aria-hidden="true">
+        <div class="auth-modal__backdrop" data-close-modal></div>
+        <div class="auth-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="login-title">
+            <button class="auth-modal__close" type="button" data-close-modal>&times;</button>
+            <h2 id="login-title">Login</h2>
+            <hr>
+            <form action="/submit_login" method="POST" class="auth-modal__form">
+                <label for="login-username" class="labels">Username</label>
+                <input type="text" id="login-username" name="username" placeholder="Enter Username" required>
+                <label for="login-email" class="labels">Email</label>
+                <input type="email" id="login-email" name="email" placeholder="Enter Email">
+                <label for="login-password" class="labels">Password</label>
+                <input type="password" id="login-password" name="password" placeholder="Enter Password" required>
+                <button type="submit" class="btn">Login</button>
+                <p class="auth-modal__switch">You don't have an account?
+                    <button type="button" class="auth-modal__link" id="switch-to-signup">Signup</button>
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <div class="auth-modal" id="signup-modal" aria-hidden="true">
+        <div class="auth-modal__backdrop" data-close-modal></div>
+        <div class="auth-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="signup-title">
+            <button class="auth-modal__close" type="button" data-close-modal>&times;</button>
+            <h2 id="signup-title">Sign Up</h2>
+            <hr>
+            <form action="/submit_Signup" method="POST" class="auth-modal__form">
+                <label for="signup-firstname" class="labels">First Name</label>
+                <input type="text" id="signup-firstname" name="Firstname" placeholder="Enter First name" required>
+                <label for="signup-lastname" class="labels">Last Name</label>
+                <input type="text" id="signup-lastname" name="Lastname" placeholder="Enter Last name" required>
+                <label for="signup-email" class="labels">Email</label>
+                <input type="email" id="signup-email" name="email" placeholder="Enter Email">
+                <label for="signup-password" class="labels">Password</label>
+                <input type="password" id="signup-password" name="password" placeholder="Enter Password" required>
+                <label for="signup-confirm" class="labels">Confirm Password</label>
+                <input type="password" id="signup-confirm" name="confirmPassword" placeholder="Confirm password" required>
+                <button type="submit" class="btn">Sign Up</button>
+                <p class="auth-modal__switch">Already have an account?
+                    <button type="button" class="auth-modal__link" id="switch-to-login">Login</button>
+                </p>
+            </form>
+        </div>
+    </div>
 
     <footer class="site-footer">
         <div class="site-footer__inner">

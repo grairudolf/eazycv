@@ -267,6 +267,129 @@ a{
     color: #0f60c4;
 }
 
+.auth-modal{
+    position: fixed;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.auth-modal--open{
+    display: flex;
+}
+
+.auth-modal__backdrop{
+    position: absolute;
+    inset: 0;
+    background: rgba(15, 25, 40, 0.55);
+}
+
+.auth-modal__dialog{
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 380px;
+    margin: 16px;
+    padding: 28px 24px 32px;
+    border-radius: 0.75rem;
+    box-shadow: 0 10px 30px rgba(15, 96, 196, 0.35);
+    background-color: #ffffff;
+}
+
+.auth-modal__dialog h2{
+    text-align: center;
+    color: #0f60c4;
+    font-size: 26px;
+    font-weight: 600;
+}
+
+.auth-modal__dialog hr{
+    border: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, #d1d9e6, transparent);
+    margin: 12px 0 16px;
+}
+
+.auth-modal__form{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.auth-modal__form .labels{
+    display: inline-block;
+    margin-bottom: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #1f2933;
+}
+
+.auth-modal__form input{
+    width: 100%;
+    height: 40px;
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 15px;
+    border: 1px solid #d1d9e6;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+    background-color: #f8faff;
+    color: #1f2933;
+}
+
+.auth-modal__form input::placeholder{
+    color: #9aa5b1;
+}
+
+.auth-modal__form input:focus{
+    border-color: #4a90e2;
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.25);
+    background-color: #ffffff;
+}
+
+.auth-modal__form .btn{
+    margin-top: 6px;
+    width: 100%;
+}
+
+.auth-modal__switch{
+    margin-top: 10px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.auth-modal__link{
+    border: none;
+    background: none;
+    padding: 0 4px;
+    cursor: pointer;
+    color: #0f60c4;
+    font-weight: 500;
+}
+
+.auth-modal__link:hover{
+    color: #0b48a0;
+}
+
+.auth-modal__close{
+    position: absolute;
+    top: 10px;
+    right: 14px;
+    border: none;
+    background: none;
+    font-size: 22px;
+    line-height: 1;
+    cursor: pointer;
+    color: #9aa5b1;
+}
+
+.auth-modal__close:hover{
+    color: #4a5665;
+}
+
 /* Responsive */
 
 @media (max-width: 768px){
