@@ -24,6 +24,20 @@ html, body{
     box-sizing: border-box;
 }
 
+.form__back-link{
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.9rem;
+    color: #1f6fd4;
+    text-decoration: none;
+    margin-bottom: 8px;
+}
+
+.form__back-link:hover{
+    color: #1553a3;
+}
+
 .form > h1{
     font-size: 1.5rem;
     margin-bottom: 4px;

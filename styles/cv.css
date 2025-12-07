@@ -255,6 +255,16 @@ body {
   /* hidden in print by media query */
 }
 
+.cv-back-home {
+  font-size: 14px;
+  color: var(--cv-primary);
+  text-decoration: none;
+}
+
+.cv-back-home:hover {
+  color: #1653a3;
+}
+
 /* Responsive */
 
 @media (max-width: 768px) {
