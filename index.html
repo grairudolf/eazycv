@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EazyCV | Home</title>
+    <link rel="stylesheet" href="styles/home.css">
+</head>
+<body>
+    <header class="site-header">
+        <nav class="nav">
+            <div class="nav__brand">EazyCV</div>
+            <button class="nav__toggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav__links">
+                <li><a href="#" class="nav__link">Home</a></li>
+                <li><a href="#" class="nav__link">About</a></li>
+                <li><a href="#" class="nav__link">Templates</a></li>
+                <li><a href="#" class="nav__link">Contact</a></li>
+            </ul>
+            <div class="nav__actions">
+                <a href="login.html" class="nav__auth nav__auth--ghost">Login</a>
+                <a href="signup.html" class="nav__auth nav__auth--primary">Sign up</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero__content">
+                <h1 class="hero__title">Build a standout CV in minutes with EazyCV.</h1>
+                <p class="hero__subtitle">
+                    EazyCV helps you generate clean, professional CVs with simple templates.
+                    Focus on your story, and let us handle the design.
+                </p>
+                <div class="hero__actions">
+                    <a href="#" class="btn btn--primary">View templates</a>
+                    <a href="login.html" class="btn btn--ghost">Generate my CV</a>
+                </div>
+            </div>
+            <div class="hero__visual">
+                <div class="hero-card">
+                    <div class="hero-card__header">
+                        <span class="hero-card__title">EazyCV Preview</span>
+                        <span class="hero-card__dot hero-card__dot--blue"></span>
+                        <span class="hero-card__dot hero-card__dot--light"></span>
+                    </div>
+                    <div class="hero-card__body">
+                        <div class="hero-card__line hero-card__line--name"></div>
+                        <div class="hero-card__line hero-card__line--short"></div>
+                        <div class="hero-card__line"></div>
+                        <div class="hero-card__line"></div>
+                        <div class="hero-card__line hero-card__line--faded"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="site-footer__inner">
+            <span class="site-footer__brand">EazyCV</span>
+            <span class="site-footer__copy">&copy; <span id="year"></span> EazyCV. All rights reserved.</span>
+        </div>
+    </footer>
+
+    <script src="js/home.js"></script>
+</body>
+</html>
+
