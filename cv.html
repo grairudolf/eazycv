@@ -1,35 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EazyCV - Landing Page</title>
-    <link rel="stylesheet" href="index.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Generated CV | EazyCV</title>
+  <link rel="stylesheet" href="styles/cv.css" />
+  <link rel="icon" href="images/logo.png">
 </head>
 <body>
-
-    <!-- NAVIGATION -->
-    <nav>
-        <div class="logo">
-            <img src="logo.png" alt="EazyCV Logo">
-            <span>EazyCV</span>
+  <div class="cv-wrapper">
+    <div class="cv-page" id="cv-page">
+      <header class="cv-header">
+        <div class="cv-header-main">
+          <h1 id="cv-name" class="cv-name">Your Name</h1>
+          <p id="cv-title" class="cv-title">Job Title</p>
         </div>
+        <div class="cv-header-contact">
+          <p id="cv-email">email@example.com</p>
+          <p id="cv-phone">+00 000 000000</p>
+          <p id="cv-location">City, Country</p>
+          <p id="cv-website">website.com</p>
+        </div>
+      </header>
 
-        <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="login.html">Login</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
-    </nav>
+      <main class="cv-content">
+        <section class="cv-section cv-summary">
+          <h2 class="cv-section-title">Profile</h2>
+          <p id="cv-summary" class="cv-summary-text">
+            Short professional summary will appear here.
+          </p>
+        </section>
 
-    <!-- HERO SECTION -->
-    <section class="hero">
-        <h1>Welcome to EazyCV</h1>
-        <p>Create clean, professional CVs automatically with our easy-to-use generator.</p>
-        <button id="startBtn">Get Started</button>
-    </section>
+        <section class="cv-section cv-experience">
+          <h2 class="cv-section-title">Experience</h2>
+          <div id="cv-experience-list" class="cv-list">
+            <!-- Experience items injected by JS -->
+          </div>
+        </section>
 
-    <script src="index.js"></script>
+        <section class="cv-section cv-education">
+          <h2 class="cv-section-title">Education</h2>
+          <div id="cv-education-list" class="cv-list">
+            <!-- Education items injected by JS -->
+          </div>
+        </section>
+
+        <section class="cv-section cv-skills">
+          <h2 class="cv-section-title">Skills</h2>
+          <ul id="cv-skills-list" class="cv-skills-list">
+            <!-- Skills injected by JS -->
+          </ul>
+        </section>
+      </main>
+      <div class="cv-watermark" aria-hidden="true">
+        <img src="images/logo.png" alt="EazyCV logo" class="cv-watermark-logo" />
+      </div>
+    </div>
+
+    <footer class="cv-footer no-print">
+      <button id="print-btn" class="btn-primary" type="button">
+        Download / Print PDF
+      </button>
+    </footer>
+  </div>
+
+  <script src="js/cv.js"></script>
 </body>
 </html>
