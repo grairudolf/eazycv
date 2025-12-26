@@ -1,0 +1,12 @@
+# Local database
+eazycv.db
+
+# Python bytecode
+__pycache__/
+
+# Virtual environment
+venv/
+
+# IDE and OS files
+.idea/
+.DS_Store

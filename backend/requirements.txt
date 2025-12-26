@@ -1,0 +1,6 @@
+fastapi
+uvicorn[standard]
+supabase
+SQLAlchemy
+google-generativeai
+python-dotenv
