@@ -1,0 +1,7 @@
+127.0.0.1 - - [26/Dec/2025 10:54:24] "GET /index.html HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 10:54:24] "GET /styles/home.css HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 10:54:24] "GET /js/home.js HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 10:54:24] "GET /cv.html HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 10:54:24] "GET /styles/cv.css HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 10:54:24] "GET /js/cv.js HTTP/1.1" 200 -
+127.0.0.1 - - [26/Dec/2025 10:54:24] "GET /images/logo.png HTTP/1.1" 200 -

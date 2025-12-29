@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles/home.css" />
+    <link rel="stylesheet" href="./styles/form.css" />
+    <link rel="icon" href="images/logowc.png" >
+    <title>Form Page | EazyCV</title>
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="nav">
+        <a href="index.html" class="nav__brand nav__logo" aria-label="EazyCV home">
+          <img src="images/logow.png" alt="EazyCV logo">
+        </a>
+        <button class="nav__toggle" aria-label="Toggle navigation" aria-expanded="false">
+          <span></span>
+          <span></span>
+        </button>
+        <div class="nav__menu">
+          <ul class="nav__links">
+            <li><a href="index.html" class="nav__link">Home</a></li>
+            <li><a href="#" class="nav__link">About</a></li>
+            <li><a href="#" class="nav__link">Templates</a></li>
+            <li><a href="#" class="nav__link">Contact</a></li>
+          </ul>
+          <div class="nav__actions">
+            <a href="login.html" class="nav__auth nav__auth--ghost">Log In</a>
+            <a href="signup.html" class="nav__auth nav__auth--primary">Sign Up</a>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <div class="container">
+      <form class="form" id="cv-form">
+        <a href="index.html" class="form__back-link">&#8592; Back to Home</a>
+        <h1>Build Your CV in Minutes</h1>
+        <p>Enter your details to create your CV</p>
+
+        <div class="form-group">
+          <label for="firstName">First Name</label>
+          <input type="text" id="firstName" placeholder="John" required />
+        </div>
+
+        <div class="form-group">
+          <label for="secondName">Second Name</label>
+          <input type="text" id="secondName" placeholder="Doe" required />
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" placeholder="name@email.com" required/>
+        </div>
+
+        <div class="form-group">
+          <label for="phone">Phone</label>
+          <input type="tel" id="phone" placeholder="+237 677 000 123" required/>
+        </div>
+
+        <div class="form-group">
+          <label for="city">City</label>
+          <input type="text" id="city" placeholder="e.g. Douala" required/>
+        </div>
+
+        <div class="form-group">
+          <label for="country">Country</label>
+          <input type="text" id="country" placeholder="e.g. Cameroon" required/>
+        </div>
+
+        <div class="form-group">
+          <label for="education">Education Level</label>
+          <input id="education" list="levels" placeholder="Select Your Level Of Education" required/>
+          <datalist id="levels">
+            <option value="O/L"></option>
+            <option value="A/L"></option>
+            <option value="Undergraduate"></option>
+            <option value="Postgraduate"></option>
+            <option value="PhD"></option>
+          </datalist>
+        </div>
+
+        <div class="form-group">
+          <label for="school">School / University</label>
+          <input
+            type="text"
+            id="school"
+            placeholder="e.g. University of Buea"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="skills">Skills</label>
+          <textarea id="skills" placeholder="e.g. JavaScript, HTML, CSS" required></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="bio">Short Bio</label>
+          <textarea id="bio" placeholder="A few lines about who you are and what you do..." required></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="exp">Experience</label>
+          <textarea id="exp" placeholder="Summarize your experience..." required></textarea>
+        </div>
+
+        <div class="form__btn">
+          <button type="submit">Generate CV</button>
+        </div>
+      </form>
+    </div>
+    <script src="./js/form.js"></script>
+    <script src="js/nav.js"></script>
+  </body>
+</html>
