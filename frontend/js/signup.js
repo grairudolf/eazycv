@@ -5,6 +5,14 @@
   const signupForm = document.getElementById('signup-form');
   const message = document.getElementById('message');
 
+  function isValidEmail(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  }
+
+  function isValidPassword(password) {
+    return password.length >= 6;
+  }
+
   if (!signupForm) return;
 
   signupForm.addEventListener('submit', (event) => {
@@ -22,8 +30,18 @@
     const password = passwordEl ? passwordEl.value.trim() : '';
     const confirmPassword = confirmPasswordEl ? confirmPasswordEl.value.trim() : '';
 
-    if (!email || !password) {
-      if (message) message.textContent = 'Please enter email and password.';
+    if (!email || !password || !confirmPassword) {
+      if (message) message.textContent = 'Please fill in all fields.';
+      return;
+    }
+
+    if (!isValidEmail(email)) {
+      if (message) message.textContent = 'Please enter a valid email address (e.g. name@example.com).';
+      return;
+    }
+
+    if (!isValidPassword(password)) {
+      if (message) message.textContent = 'Password must be at least 6 characters long.';
       return;
     }
 

@@ -37,6 +37,17 @@ app.add_middleware(
 def read_root():
     return {"message": "Welcome to EazyCV API"}
 
+
+@app.get("/users/")
+def list_users(db: Session = Depends(get_db)):
+    """Return a simple list of user IDs that have saved CVs.
+
+    In local demo mode there will typically be a single demo user, but this
+    endpoint is useful if you later extend the app to support multiple users.
+    """
+    rows = db.query(CV.user_id).distinct().all()
+    return [{"user_id": str(row[0])} for row in rows]
+
 @app.post("/cvs/", response_model=CVSchema)
 def create_new_cv(cv: CVSchemaCreate, db: Session = Depends(get_db)):
     """Create a new CV for the demo user.

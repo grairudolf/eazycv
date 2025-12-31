@@ -1,5 +1,6 @@
 ;(function () {
-  const API_URL = "/cvs/";
+  const API_BASE = "http://localhost:8000";
+  const API_URL = `${API_BASE}/cvs/`;
 
   function getValue(id) {
     const el = document.getElementById(id);
