@@ -1,9 +1,6 @@
-import os
-from supabase import create_client, Client
+"""Legacy Supabase client module.
 
-# Get Supabase credentials from environment variables
-url: str = os.environ.get("SUPABASE_URL", "your-supabase-url")
-key: str = os.environ.get("SUPABASE_KEY", "your-supabase-key")
-
-# Initialize the Supabase client
-supabase: Client = create_client(url, key)
+The current local demo version of EazyCV does not use the Supabase Python
+client. This module is kept only to preserve the original project structure
+from the Supabase-backed version. It is safe to ignore in local setups.
+"""

@@ -1,27 +1,31 @@
 // frontend/js/login.js
+// Simple client-side only login for local demo use.
 
-const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+;(function () {
+  const loginForm = document.getElementById('login-form');
+  const errorMessage = document.getElementById('error-message');
 
-const loginForm = document.getElementById('login-form');
-const errorMessage = document.getElementById('error-message');
+  if (!loginForm) return;
 
-loginForm.addEventListener('submit', async (event) => {
+  loginForm.addEventListener('submit', (event) => {
     event.preventDefault();
-    errorMessage.textContent = '';
+    if (errorMessage) errorMessage.textContent = '';
 
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
+    const emailEl = document.getElementById('email');
+    const passwordEl = document.getElementById('password');
 
-    const { data, error } = await supabase.auth.signInWithPassword({
-        email: email,
-        password: password,
-    });
+    const email = emailEl ? emailEl.value.trim() : '';
+    const password = passwordEl ? passwordEl.value.trim() : '';
 
-    if (error) {
-        errorMessage.textContent = error.message;
-    } else {
-        // Store the session and redirect
-        localStorage.setItem('supabase.auth.token', JSON.stringify(data.session));
-        window.location.href = 'form.html';
+    if (!email || !password) {
+      if (errorMessage) errorMessage.textContent = 'Please enter email and password.';
+      return;
     }
-});
+
+    // In local mode we just mark the user as "logged in" in localStorage.
+    localStorage.setItem('eazycv_logged_in', 'true');
+    localStorage.setItem('eazycv_user_email', email);
+
+    window.location.href = 'form.html';
+  });
+})();

@@ -7,20 +7,13 @@
 
   async function loadCvData() {
     const cvId = localStorage.getItem('eazycv_current_cv_id');
-    const sessionData = JSON.parse(localStorage.getItem('supabase.auth.token'));
-    if (!cvId || !sessionData || !sessionData.access_token) {
-        window.location.href = 'login.html';
-        return;
+    if (!cvId) {
+      window.location.href = 'form.html';
+      return;
     }
 
-    const token = sessionData.access_token;
-
     try {
-      const response = await fetch(`${API_URL}${cvId}`, {
-        headers: {
-          "Authorization": `Bearer ${token}`
-        }
-      });
+      const response = await fetch(`${API_URL}${cvId}`);
       if (response.ok) {
         const cvData = await response.json();
         renderCv(cvData);
@@ -126,20 +119,14 @@
   
   async function handleOptimize() {
     const cvId = localStorage.getItem('eazycv_current_cv_id');
-    const sessionData = JSON.parse(localStorage.getItem('supabase.auth.token'));
-    if (!cvId || !sessionData || !sessionData.access_token) {
-        window.location.href = 'login.html';
-        return;
+    if (!cvId) {
+      window.location.href = 'form.html';
+      return;
     }
 
-    const token = sessionData.access_token;
-    
     try {
         const response = await fetch(`${API_URL}${cvId}/optimize`, {
             method: 'POST',
-            headers: {
-                "Authorization": `Bearer ${token}`
-            }
         });
 
         if (response.ok) {

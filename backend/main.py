@@ -5,12 +5,14 @@ load_dotenv()
 
 from fastapi import FastAPI, Depends, HTTPException
 from sqlalchemy.orm import Session
-from services.auth import get_current_user
 from services.cv import create_cv, get_cvs_by_user, get_cv_by_id
 from schemas.cv import CVSchema, CVSchemaCreate
 from database.database import get_db, Base, engine
 from models.cv import CV
 import uuid
+
+# Demo user id used in local, unauthenticated mode
+DEMO_USER_ID = uuid.UUID("00000000-0000-0000-0000-000000000001")
 
 Base.metadata.create_all(bind=engine)
 
@@ -36,42 +38,36 @@ def read_root():
     return {"message": "Welcome to EazyCV API"}
 
 @app.post("/cvs/", response_model=CVSchema)
-def create_new_cv(cv: CVSchemaCreate, db: Session = Depends(get_db), user: dict = Depends(get_current_user)):
-    user_id_str = user.data.user.id
-    user_id = uuid.UUID(user_id_str)
+def create_new_cv(cv: CVSchemaCreate, db: Session = Depends(get_db)):
+    """Create a new CV for the demo user.
+
+    The application now runs in a single-user, local demo mode without
+    external authentication. All CVs are associated with a fixed demo user.
+    """
+    user_id = DEMO_USER_ID
     return create_cv(db=db, cv=cv, user_id=user_id)
 
 @app.get("/cvs/", response_model=list[CVSchema])
-def read_user_cvs(db: Session = Depends(get_db), user: dict = Depends(get_current_user)):
-    user_id_str = user.data.user.id
-    user_id = uuid.UUID(user_id_str)
+def read_user_cvs(db: Session = Depends(get_db)):
+    """Return all CVs for the demo user."""
+    user_id = DEMO_USER_ID
     return get_cvs_by_user(db=db, user_id=user_id)
 
 @app.get("/cvs/{cv_id}", response_model=CVSchema)
-def read_cv(cv_id: int, db: Session = Depends(get_db), user: dict = Depends(get_current_user)):
+def read_cv(cv_id: int, db: Session = Depends(get_db)):
     cv = get_cv_by_id(db=db, cv_id=cv_id)
     if cv is None:
         raise HTTPException(status_code=404, detail="CV not found")
-    
-    user_id_str = user.data.user.id
-    user_id = uuid.UUID(user_id_str)
-    if cv.user_id != user_id:
-        raise HTTPException(status_code=403, detail="Not authorized to access this CV")
     return cv
 
 from services.gemini import optimize_summary_with_gemini
 from services.cv import update_cv_with_optimization
 
 @app.post("/cvs/{cv_id}/optimize", response_model=CVSchema)
-def optimize_cv(cv_id: int, db: Session = Depends(get_db), user: dict = Depends(get_current_user)):
+def optimize_cv(cv_id: int, db: Session = Depends(get_db)):
     cv = get_cv_by_id(db=db, cv_id=cv_id)
     if cv is None:
         raise HTTPException(status_code=404, detail="CV not found")
-
-    user_id_str = user.data.user.id
-    user_id = uuid.UUID(user_id_str)
-    if cv.user_id != user_id:
-        raise HTTPException(status_code=403, detail="Not authorized to access this CV")
 
     # Extract the summary from the personal details
     summary_to_optimize = cv.personal.get("summary", "")
