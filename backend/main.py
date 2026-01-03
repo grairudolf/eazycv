@@ -21,9 +21,10 @@ app = FastAPI()
 # Add CORS middleware to allow the frontend to communicate with the backend
 from fastapi.middleware.cors import CORSMiddleware
 
-origins = [
-    "http://localhost:8080",
-]
+# Allow all origins in local development so frontend can be served from
+# http://localhost:8080, http://127.0.0.1:8080, or other hosts without
+# running into CORS issues.
+origins = ["*"]
 
 app.add_middleware(
     CORSMiddleware,
