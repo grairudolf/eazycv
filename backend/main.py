@@ -9,10 +9,9 @@ from services.cv import create_cv, get_cvs_by_user, get_cv_by_id
 from schemas.cv import CVSchema, CVSchemaCreate
 from database.database import get_db, Base, engine
 from models.cv import CV
-import uuid
 
 # Demo user id used in local, unauthenticated mode
-DEMO_USER_ID = uuid.UUID("00000000-0000-0000-0000-000000000001")
+DEMO_USER_ID = "00000000-0000-0000-0000-000000000001"
 
 Base.metadata.create_all(bind=engine)
 
