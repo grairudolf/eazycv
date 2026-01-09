@@ -3,7 +3,7 @@ from models.cv import CV
 from schemas.cv import CVSchemaCreate
 import uuid
 
-def create_cv(db: Session, cv: CVSchemaCreate, user_id: uuid.UUID):
+def create_cv(db: Session, cv: CVSchemaCreate, user_id: str):
     db_cv = CV(
         user_id=user_id,
         personal=cv.personal.dict(),
@@ -16,7 +16,7 @@ def create_cv(db: Session, cv: CVSchemaCreate, user_id: uuid.UUID):
     db.refresh(db_cv)
     return db_cv
 
-def get_cvs_by_user(db: Session, user_id: uuid.UUID):
+def get_cvs_by_user(db: Session, user_id: str):
     return db.query(CV).filter(CV.user_id == user_id).all()
 
 def get_cv_by_id(db: Session, cv_id: int):

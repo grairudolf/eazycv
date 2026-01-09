@@ -1,12 +1,12 @@
 from sqlalchemy import Column, Integer, String, JSON
-from sqlalchemy.dialects.postgresql import UUID
 from database.database import Base
+import uuid
 
 class CV(Base):
     __tablename__ = "cvs"
 
     id = Column(Integer, primary_key=True, index=True)
-    user_id = Column(UUID(as_uuid=True), index=True, nullable=False)
+    user_id = Column(String, index=True, nullable=False) # Store UUID as string for SQLite compatibility
     personal = Column(JSON, nullable=False)
     experience = Column(JSON, nullable=False)
     education = Column(JSON, nullable=False)

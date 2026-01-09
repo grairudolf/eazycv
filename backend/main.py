@@ -12,7 +12,7 @@ from models.cv import CV
 import uuid
 
 # Demo user id used in local, unauthenticated mode
-DEMO_USER_ID = uuid.UUID("00000000-0000-0000-0000-000000000001")
+DEMO_USER_ID = "00000000-0000-0000-0000-000000000001"
 
 Base.metadata.create_all(bind=engine)
 
