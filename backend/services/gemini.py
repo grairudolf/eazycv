@@ -8,7 +8,7 @@ def optimize_summary_with_gemini(summary: str) -> str:
     """
     Optimizes a CV summary using the Gemini API.
     """
-    model = genai.GenerativeModel('gemini-pro')
+    model = genai.GenerativeModel('gemini-2.0-flash')
 
     # Create a detailed prompt for the Gemini API
     prompt = f"""
