@@ -25,5 +25,7 @@ def optimize_summary_with_gemini(summary: str) -> str:
         response = model.generate_content(prompt)
         return response.text
     except Exception as e:
+        import traceback
+        traceback.print_exc()
         print(f"Error calling Gemini API: {e}")
-        return "Error: Could not optimize CV."
+        return f"Error: Could not optimize CV. {str(e)}"
