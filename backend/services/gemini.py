@@ -1,14 +1,14 @@
 import os
-import google.generativeai as genai
+from google import genai
 
 # Configure the Gemini API key
-genai.configure(api_key=os.environ.get("GEMINI_API_KEY", "your-gemini-api-key"))
+client = genai.Client(api_key=os.environ.get("GEMINI_API_KEY", "your-gemini-api-key"))
 
 def optimize_summary_with_gemini(summary: str) -> str:
     """
     Optimizes a CV summary using the Gemini API.
     """
-    model = genai.GenerativeModel('gemini-2.0-flash')
+    model = client.models.get('gemini-1.5-flash')
 
     # Create a detailed prompt for the Gemini API
     prompt = f"""

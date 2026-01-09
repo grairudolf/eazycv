@@ -50,17 +50,24 @@
       return;
     }
 
-    // For local demo we simply treat this as a successful sign up.
-    localStorage.setItem('eazycv_logged_in', 'true');
-    localStorage.setItem('eazycv_user_email', email);
+    // Use the mock Supabase client to sign up
+    (async () => {
+      const { user, session, error } = await supabase.auth.signUp({
+        email: email,
+        password: password,
+      });
 
-    if (message) {
-      message.style.color = 'green';
-      message.textContent = 'Sign up successful! Redirecting to CV form...';
-    }
-
-    setTimeout(() => {
-      window.location.href = 'form.html';
-    }, 1500);
+      if (error) {
+        if (message) message.textContent = error.message;
+      } else {
+        if (message) {
+          message.style.color = 'green';
+          message.textContent = 'Sign up successful! Redirecting to CV form...';
+        }
+        setTimeout(() => {
+          window.location.href = 'form.html';
+        }, 1500);
+      }
+    })();
   });
 })();

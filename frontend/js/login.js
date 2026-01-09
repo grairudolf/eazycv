@@ -40,10 +40,19 @@
       return;
     }
 
-    // In local mode we just mark the user as "logged in" in localStorage.
-    localStorage.setItem('eazycv_logged_in', 'true');
-    localStorage.setItem('eazycv_user_email', email);
+// Use the mock Supabase client to sign in
+(async () => {
+  const { user, session, error } = await supabase.auth.signInWithPassword({
+    email: email,
+    password: password,
+  });
 
+  if (error) {
+    if (errorMessage) errorMessage.textContent = error.message;
+  } else {
+    // On successful login, redirect to the form page
     window.location.href = 'form.html';
+  }
+})();
   });
 })();
