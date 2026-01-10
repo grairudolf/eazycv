@@ -7,6 +7,42 @@ For local development, this repository now ships with a **Supabase-free demo mod
 - All CVs are stored in a local SQLite database.
 - A single demo user is used behind the scenes, and login/sign-up are implemented on the frontend only.
 
+## Getting Started
+
+Follow these steps to set up the project locally.
+
+### 1. Backend Setup
+
+1.  **Install Dependencies:**
+    ```bash
+    pip install -r backend/requirements.txt
+    ```
+
+2.  **Configure Environment Variables:**
+    - Create a `.env` file in the `backend` directory.
+    - You can copy the example file:
+      ```bash
+      cp backend/.env.example backend/.env
+      ```
+    - **Important:** Open `backend/.env` and add your valid **Google Gemini API Key**. You can get one from [Google AI Studio](https://aistudio.google.com/app/apikey).
+
+3.  **Run the Backend Server:**
+    ```bash
+    cd backend
+    python -m uvicorn main:app --reload --host 0.0.0.0 --port 8000
+    ```
+    The backend will be available at `http://127.0.0.1:8000`.
+
+### 2. Frontend Setup
+
+1.  **Serve the Frontend:**
+    You can use Python's built-in HTTP server or any other static file server.
+    ```bash
+    cd frontend
+    python -m http.server 3000
+    ```
+    The application will be available at `http://localhost:3000`.
+
 ## High-Level Architecture
 
 The application is designed as a decoupled full-stack project, with a clear separation of concerns between the frontend and backend.

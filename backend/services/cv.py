@@ -1,7 +1,6 @@
 from sqlalchemy.orm import Session
 from models.cv import CV
 from schemas.cv import CVSchemaCreate
-import uuid
 
 def create_cv(db: Session, cv: CVSchemaCreate, user_id: str):
     db_cv = CV(
