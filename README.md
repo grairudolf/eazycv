@@ -43,6 +43,18 @@ Follow these steps to set up the project locally.
     ```
     The application will be available at `http://localhost:3000`.
 
+### 3. Database Inspection
+
+You can inspect the local SQLite database using the provided helper script:
+
+```bash
+# List all CVs in the database
+python backend/manage_db.py list
+
+# Clear the database (delete all CVs)
+python backend/manage_db.py clear
+```
+
 ## High-Level Architecture
 
 The application is designed as a decoupled full-stack project, with a clear separation of concerns between the frontend and backend.
