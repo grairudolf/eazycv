@@ -131,9 +131,7 @@
         window.location.href = 'login.html';
         return;
     }
-
     const token = sessionData.access_token;
-    
     try {
         const response = await fetch(`${API_URL}${cvId}/optimize`, {
             method: 'POST',
@@ -141,7 +139,6 @@
                 "Authorization": `Bearer ${token}`
             }
         });
-
         if (response.ok) {
             const result = await response.json();
             getElement("cv-summary").textContent = result.optimized_cv;

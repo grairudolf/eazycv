@@ -1,0 +1,17 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+body{
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f3f7ff, #e1ecff);
+    color: #1f2933;
+}
+
+a{
+    text-decoration: none;
+    color: inherit;
+}
