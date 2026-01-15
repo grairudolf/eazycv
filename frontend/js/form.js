@@ -1,5 +1,6 @@
 ;(function () {
-  const API_URL = "/cvs/";
+  const API_BASE = "http://127.0.0.1:8000";
+  const API_URL = `${API_BASE}/cvs/`;
 
   function getValue(id) {
     const el = document.getElementById(id);
@@ -16,14 +17,6 @@
 
   async function handleSubmit(event) {
     event.preventDefault();
-
-    const sessionData = JSON.parse(localStorage.getItem('supabase.auth.token'));
-    if (!sessionData || !sessionData.access_token) {
-        window.location.href = 'login.html';
-        return;
-    }
-
-    const token = sessionData.access_token;
 
     const firstName = getValue("firstName");
     const secondName = getValue("secondName");
@@ -74,7 +67,6 @@
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${token}`
         },
         body: JSON.stringify(cvData),
       });

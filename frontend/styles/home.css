@@ -74,6 +74,35 @@ a{
 .nav__actions{
     display: flex;
     gap: 10px;
+    align-items: center;
+}
+
+.nav__profile-wrap{
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: #ffffff;
+}
+
+.nav__profile{
+    width: 28px;
+    height: 28px;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 600;
+    background-color: rgba(15,96,196,0.2);
+}
+
+.nav__profile-email{
+    font-size: 13px;
+}
+
+.nav__logout{
+    background-color: transparent;
 }
 
 .nav__auth{
@@ -145,7 +174,19 @@ a{
     font-size: 16px;
     color: #4a5665;
     max-width: 520px;
-    margin-bottom: 24px;
+    margin-bottom: 16px;
+}
+
+.hero__bullets{
+    list-style: none;
+    padding-left: 0;
+    margin: 0 0 20px 0;
+    color: #4a5665;
+    font-size: 14px;
+}
+
+.hero__bullets li{
+    margin-bottom: 4px;
 }
 
 .hero__actions{
@@ -258,6 +299,61 @@ a{
 .hero-card__line--faded{
     width: 85%;
     background: linear-gradient(to right, #f1f4ff, #dde6ff);
+}
+
+/* Content sections */
+
+.section{
+    padding: 32px 20px;
+}
+
+.section__inner{
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.section__title{
+    font-size: 24px;
+    margin-bottom: 6px;
+    color: #0f2940;
+}
+
+.section__subtitle{
+    font-size: 14px;
+    color: #4a5665;
+    margin-bottom: 20px;
+    max-width: 600px;
+}
+
+.section-grid{
+    display: grid;
+    gap: 16px;
+}
+
+.section-grid--steps{
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.section-grid--features{
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+}
+
+.card{
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 16px 18px;
+    box-shadow: 0 10px 26px rgba(15, 96, 196, 0.12);
+}
+
+.card__title{
+    font-size: 16px;
+    margin-bottom: 6px;
+    color: #0f2940;
+}
+
+.card__body{
+    font-size: 14px;
+    color: #4a5665;
 }
 
 /* Footer */
@@ -438,6 +534,7 @@ a{
     .nav__actions{
         width: 100%;
         justify-content: flex-start;
+        margin-top: 8px;
     }
 
     .nav__toggle{

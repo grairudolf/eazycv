@@ -255,6 +255,15 @@ body {
   /* hidden in print by media query */
 }
 
+.cv-header-bar {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto 8px auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .cv-back-home {
   font-size: 14px;
   color: var(--cv-primary);

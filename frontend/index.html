@@ -19,14 +19,14 @@
             </button>
             <div class="nav__menu">
                 <ul class="nav__links">
-                    <li><a href="#" class="nav__link">Home</a></li>
-                    <li><a href="#" class="nav__link">About</a></li>
-                    <li><a href="#" class="nav__link">Templates</a></li>
-                    <li><a href="#" class="nav__link">Contact</a></li>
+                    <li><a href="#top" class="nav__link">Home</a></li>
+                    <li><a href="#how-it-works" class="nav__link">How it works</a></li>
+                    <li><a href="#templates" class="nav__link">Templates</a></li>
+                    <li><a href="#contact" class="nav__link">Contact</a></li>
                 </ul>
                 <div class="nav__actions">
-                    <a href="#" class="nav__auth nav__auth--ghost" id="open-login">Log In</a>
-                    <a href="#" class="nav__auth nav__auth--primary" id="open-signup">Sign Up</a>
+                    <a href="login.html" class="nav__auth nav__auth--ghost" data-auth-link="login">Log In</a>
+                    <a href="signup.html" class="nav__auth nav__auth--primary" data-auth-link="signup">Sign Up</a>
                 </div>
             </div>
         </nav>
@@ -37,11 +37,17 @@
             <div class="hero__content">
                 <h1 class="hero__title">Build a standout CV in minutes with EazyCV.</h1>
                 <p class="hero__subtitle">
-                    EazyCV helps you generate clean, professional CVs with simple templates.
-                    Focus on your story, and let us handle the design.
+                    Turn your experience into a clean, professional CV that hiring managers
+                    can scan in seconds. EazyCV keeps the design simple and modern so your
+                    story does the talking.
                 </p>
+                <ul class="hero__bullets">
+                    <li>No sign-ups or subscriptions required for local use</li>
+                    <li>Structured form that guides you through every CV section</li>
+                    <li>One-click AI optimization to polish your summary</li>
+                </ul>
                 <div class="hero__actions">
-                    <a href="#" class="btn btn--primary">View templates</a>
+                    <a href="#how-it-works" class="btn btn--primary">How it works</a>
                     <a href="form.html" class="btn btn--ghost">Generate my CV</a>
                 </div>
             </div>
@@ -63,53 +69,56 @@
                 </div>
             </div>
         </section>
+
+        <section id="how-it-works" class="section section--how">
+            <div class="section__inner">
+                <h2 class="section__title">How EazyCV works</h2>
+                <p class="section__subtitle">Go from blank page to a polished CV in three simple steps.</p>
+                <div class="section-grid section-grid--steps">
+                    <article class="card">
+                        <h3 class="card__title">1. Tell us about yourself</h3>
+                        <p class="card__body">Fill in your personal details, education, skills, and experience in the guided form. No complex fields &mdash; just clear prompts.</p>
+                    </article>
+                    <article class="card">
+                        <h3 class="card__title">2. Preview your CV</h3>
+                        <p class="card__body">We convert your answers into a clean CV layout instantly so you can see exactly what recruiters will see.</p>
+                    </article>
+                    <article class="card">
+                        <h3 class="card__title">3. Refine with AI</h3>
+                        <p class="card__body">Use the optional "Optimize with AI" button to turn your summary into a sharper, more impactful profile statement.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="templates" class="section section--features">
+            <div class="section__inner">
+                <h2 class="section__title">Why candidates use EazyCV</h2>
+                <div class="section-grid section-grid--features">
+                    <article class="card">
+                        <h3 class="card__title">Simple, focused design</h3>
+                        <p class="card__body">No distracting graphics or gimmicks &mdash; just a layout that passes ATS filters and looks good printed or as PDF.</p>
+                    </article>
+                    <article class="card">
+                        <h3 class="card__title">Built for speed</h3>
+                        <p class="card__body">You can go from an empty page to a ready-to-download CV in under 10 minutes, even if you hate writing about yourself.</p>
+                    </article>
+                    <article class="card">
+                        <h3 class="card__title">Own your data</h3>
+                        <p class="card__body">In local mode everything stays on your machine. No accounts, no tracking &mdash; just a lightweight tool you control.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section section--contact">
+            <div class="section__inner">
+                <h2 class="section__title">Get in touch</h2>
+                <p class="section__subtitle">Have ideas for new templates or improvements? Feel free to fork the project or open an issue in your Git hosting platform.</p>
+            </div>
+        </section>
     </main>
 
-    <div class="auth-modal" id="login-modal" aria-hidden="true">
-        <div class="auth-modal__backdrop" data-close-modal></div>
-        <div class="auth-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="login-title">
-            <button class="auth-modal__close" type="button" data-close-modal>&times;</button>
-            <h2 id="login-title">Log In</h2>
-            <hr>
-            <form action="/submit_login" method="POST" class="auth-modal__form">
-                <label for="login-username" class="labels">Username</label>
-                <input type="text" id="login-username" name="username" placeholder="Enter Username" required>
-                <label for="login-email" class="labels">Email</label>
-                <input type="email" id="login-email" name="email" placeholder="Enter Email">
-                <label for="login-password" class="labels">Password</label>
-                <input type="password" id="login-password" name="password" placeholder="Enter Password" required>
-                <button type="submit" class="btn">Log In</button>
-                <p class="auth-modal__switch">You don't have an account?
-                    <button type="button" class="auth-modal__link" id="switch-to-signup">Signup</button>
-                </p>
-            </form>
-        </div>
-    </div>
-
-    <div class="auth-modal" id="signup-modal" aria-hidden="true">
-        <div class="auth-modal__backdrop" data-close-modal></div>
-        <div class="auth-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="signup-title">
-            <button class="auth-modal__close" type="button" data-close-modal>&times;</button>
-            <h2 id="signup-title">Sign Up</h2>
-            <hr>
-            <form action="/submit_Signup" method="POST" class="auth-modal__form">
-                <label for="signup-firstname" class="labels">First Name</label>
-                <input type="text" id="signup-firstname" name="Firstname" placeholder="Enter First name" required>
-                <label for="signup-lastname" class="labels">Last Name</label>
-                <input type="text" id="signup-lastname" name="Lastname" placeholder="Enter Last name" required>
-                <label for="signup-email" class="labels">Email</label>
-                <input type="email" id="signup-email" name="email" placeholder="Enter Email">
-                <label for="signup-password" class="labels">Password</label>
-                <input type="password" id="signup-password" name="password" placeholder="Enter Password" required>
-                <label for="signup-confirm" class="labels">Confirm Password</label>
-                <input type="password" id="signup-confirm" name="confirmPassword" placeholder="Confirm password" required>
-                <button type="submit" class="btn">Sign Up</button>
-                <p class="auth-modal__switch">Already have an account?
-                    <button type="button" class="auth-modal__link" id="switch-to-login">Log In</button>
-                </p>
-            </form>
-        </div>
-    </div>
 
     <footer class="site-footer">
         <div class="site-footer__inner">

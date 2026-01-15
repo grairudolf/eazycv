@@ -1,5 +1,6 @@
 ;(function () {
-  const API_URL = "/cvs/";
+  const API_BASE = "http://127.0.0.1:8000";
+  const API_URL = `${API_BASE}/cvs/`;
 
   function getElement(id) {
     return document.getElementById(id);
@@ -7,20 +8,13 @@
 
   async function loadCvData() {
     const cvId = localStorage.getItem('eazycv_current_cv_id');
-    const sessionData = JSON.parse(localStorage.getItem('supabase.auth.token'));
-    if (!cvId || !sessionData || !sessionData.access_token) {
-        window.location.href = 'login.html';
-        return;
+    if (!cvId) {
+      window.location.href = 'form.html';
+      return;
     }
 
-    const token = sessionData.access_token;
-
     try {
-      const response = await fetch(`${API_URL}${cvId}`, {
-        headers: {
-          "Authorization": `Bearer ${token}`
-        }
-      });
+      const response = await fetch(`${API_URL}${cvId}`);
       if (response.ok) {
         const cvData = await response.json();
         renderCv(cvData);
@@ -124,20 +118,74 @@
     });
   }
   
+  async function downloadPdf() {
+    const cvPage = document.getElementById('cv-page');
+    if (!cvPage) {
+      alert('Could not find CV content to export.');
+      return;
+    }
+
+    const jsPdfNamespace = window.jspdf;
+    if (!jsPdfNamespace || !window.html2canvas) {
+      alert('PDF libraries did not load correctly. Please refresh the page and try again.');
+      return;
+    }
+
+    const { jsPDF } = jsPdfNamespace;
+
+    try {
+      // Render the CV page to a high-resolution canvas
+      const canvas = await window.html2canvas(cvPage, {
+        scale: 2,
+        useCORS: true,
+        scrollY: -window.scrollY,
+      });
+      const imgData = canvas.toDataURL('image/png');
+
+      const pdf = new jsPDF('p', 'mm', 'a4');
+      const pageWidth = pdf.internal.pageSize.getWidth();
+      const pageHeight = pdf.internal.pageSize.getHeight();
+
+      const imgWidth = pageWidth;
+      const imgHeight = (canvas.height * imgWidth) / canvas.width;
+
+      let renderWidth = imgWidth;
+      let renderHeight = imgHeight;
+      let offsetX = 0;
+      let offsetY = 0;
+
+      // Scale down proportionally if the rendered image is taller than a single A4 page
+      const heightRatio = pageHeight / imgHeight;
+      const widthRatio = pageWidth / imgWidth;
+      const ratio = Math.min(heightRatio, widthRatio, 1);
+
+      renderWidth = imgWidth * ratio;
+      renderHeight = imgHeight * ratio;
+      offsetX = (pageWidth - renderWidth) / 2;
+      offsetY = (pageHeight - renderHeight) / 2;
+
+      pdf.addImage(imgData, 'PNG', offsetX, offsetY, renderWidth, renderHeight);
+      pdf.save('eazycv-cv.pdf');
+    } catch (err) {
+      console.error('Failed to generate PDF', err);
+      alert('Could not generate a PDF for your CV. Please try again.');
+    }
+  }
+
   async function handleOptimize() {
     const cvId = localStorage.getItem('eazycv_current_cv_id');
-    const sessionData = JSON.parse(localStorage.getItem('supabase.auth.token'));
-    if (!cvId || !sessionData || !sessionData.access_token) {
-        window.location.href = 'login.html';
-        return;
+    if (!cvId) {
+      window.location.href = 'form.html';
+      return;
     }
+<<<<<<< HEAD
     const token = sessionData.access_token;
+=======
+
+>>>>>>> edf66f585c0adfa2c84bfd795d7d9ac676c9bb1e
     try {
         const response = await fetch(`${API_URL}${cvId}/optimize`, {
             method: 'POST',
-            headers: {
-                "Authorization": `Bearer ${token}`
-            }
         });
         if (response.ok) {
             const result = await response.json();
@@ -154,7 +202,7 @@
 
   function setupButtons() {
     const printBtn = getElement("print-btn");
-    printBtn.addEventListener("click", () => window.print());
+    printBtn.addEventListener("click", downloadPdf);
     
     const optimizeBtn = document.createElement('button');
     optimizeBtn.id = 'optimize-btn';
