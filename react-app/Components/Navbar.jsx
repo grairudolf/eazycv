@@ -1,4 +1,5 @@
 import '../Components/Navbar.css';
+import { Link } from 'react-router-dom';
 export default function Navbar() {
   return (
 
@@ -14,14 +15,19 @@ export default function Navbar() {
             </button>
             <div className="nav__menu">
                 <ul className="nav__links">
-                    <li><a href="#" className="nav__link">Home</a></li>
+                    <li> <Link to="/"><a href="#" className="nav__link">Home</a></Link>
+                        </li>
+
                     <li><a href="#" className="nav__link">About</a></li>
                     <li><a href="#" className="nav__link">Templates</a></li>
                     <li><a href="#" className="nav__link">Contact</a></li>
                 </ul>
                 <div className="nav__actions">
-                    <a href="#" className="nav__auth nav__auth--ghost" id="open-login">Log In</a>
-                    <a href="#" className="nav__auth nav__auth--primary" id="open-signup">Sign Up</a>
+                        <Link to="/login"><a href="#" className="nav__auth nav__auth--ghost" id="open-login">Log In</a></Link>
+
+                        <Link to="/signup"><a href="#" className="nav__auth nav__auth--primary" id="open-signup">Sign Up</a></Link>
+                    
+                    
                 </div>
             </div>
         </nav>

@@ -1,23 +1,23 @@
+import "../Components/Login.css";
 import Navbar from "./Navbar";
-import "../Components/SignUp.css";
 
-export default function SignUp() {
+export default function LoginForm() {
   return (
-<>
-    <div className="SignUp">
-
+    <>
+    
     <div className="centerwrapper">
+       
       <div className="container">
-        <h2>Create your free EazyCV profile</h2>
+        <h2>Log in to EazyCV</h2>
 
         <p className="auth-intro">
-          Use a basic email and password to keep your CV settings on this device.
-          No external account is created.
+          Save your progress on this device so you can quickly return and update
+          your CV later.
         </p>
 
         <hr />
 
-        <form id="signup-form">
+        <form id="login-form">
           <label htmlFor="email" className="labels">
             Email
           </label>
@@ -40,36 +40,24 @@ export default function SignUp() {
             required
           />
 
-          <label htmlFor="confirm-password" className="labels">
-            Confirm Password
-          </label>
-          <input
-            type="password"
-            id="confirm-password"
-            name="confirm-password"
-            placeholder="Confirm password"
-            required
-          />
-
           <div className="options"></div>
 
           <div className="center">
             <button type="submit" className="btn">
-              Sign Up
+              Log In
             </button>
           </div>
 
           <div className="center">
-            <label>Already have an account?</label>
-            <a href="./login.html"> Log In</a>
+            <label>You don&apos;t have an account?</label>
+            <a href="./signup.html"> Sign Up</a>
           </div>
         </form>
 
-        <p id="message" style={{ color: "red" }}></p>
+        <p id="error-message" style={{ color: "red" }}></p>
       </div>
     </div>
 
-    </div>
-</>
+    </>
   );
 }
