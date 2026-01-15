@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "../Components/Hbody.css"
 
 export default function HBody() {
@@ -18,9 +19,12 @@ export default function HBody() {
                 <a href="#" className="btn btn--primary">
                   View templates
                 </a>
-                <a href="form.html" className="btn btn--ghost">
+
+                <Link to="/cvform"> <a href="form.html" className="btn btn--ghost">
                   Generate my CV
                 </a>
+                </Link>
+               
               </div>
             </div>
 

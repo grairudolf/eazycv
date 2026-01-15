@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "../Components/Login.css";
 import Navbar from "./Navbar";
 
@@ -50,7 +51,8 @@ export default function LoginForm() {
 
           <div className="center">
             <label>You don&apos;t have an account?</label>
-            <a href="./signup.html"> Sign Up</a>
+            <Link to="/signup"> <a href="#"> Sign Up</a></Link>
+           
           </div>
         </form>
 
