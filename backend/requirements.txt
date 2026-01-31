@@ -3,3 +3,5 @@ uvicorn[standard]
 SQLAlchemy
 google-generativeai
 python-dotenv
+pytest
+pytest-mock
