@@ -1,4 +1,47 @@
-# EazyCV: AI-Powered Full-Stack CV Builder
+# EazyCV
+
+Minimal full‑stack CV builder — FastAPI backend, React frontend. Local demo mode uses SQLite. Optional AI summary optimization via Google Gemini.
+
+How it works
+- Frontend submits CV JSON to backend endpoints.
+- Backend persists CVs and exposes `/cvs/{id}/optimize` to rewrite summaries via Gemini.
+
+Quick start
+- Backend (PowerShell):
+
+```powershell
+cd backend
+python -m venv venv
+.\venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+uvicorn main:app --reload --port 8000
+```
+
+- Frontend (project root):
+
+```powershell
+cd react-app
+npm install
+npm run dev
+```
+
+Tests & CI
+- Run tests locally: `pip install -r backend/requirements.txt && pytest -q backend/tests`
+- GitHub Actions runs tests via `.github/workflows/python-tests.yml` on push/PR.
+
+License
+- MIT
+
+Project layout
+```
+backend/
+react-app/
+    src/  (React app)
+```
+
+Files of interest: `backend/main.py`, `backend/requirements.txt`, `backend/services/`, `react-app/src/`.
+
+
 
 EazyCV is a full-stack web application that transforms a traditional, frontend-only CV builder into a modern, production-ready solution. It leverages a powerful backend built with FastAPI to handle all business logic, while Supabase provides robust authentication and database services in the original architecture. The application also integrates Google's Gemini API to offer AI-powered CV optimization, helping users create professional, ATS-friendly resumes.
 
@@ -76,205 +119,82 @@ The project is organized into two main directories: `frontend` and `backend`.
 The frontend is structured to keep pages, styles, scripts, and assets clearly separated, allowing it to scale cleanly.
 
 ```
-frontend/
-├── cv.html             # Page to display the generated CV
-├── form.html           # Page for CV data input
-├── index.html          # Landing/home page with auth modals
-├── login.html          # Standalone login page
-├── signup.html         # Standalone sign-up page
-├── images/
-│   └── logo.png        # Application assets
-├── js/
-│   ├── cv.js           # Logic for the CV display page
-│   ├── form.js         # Logic for the CV form submission
-│   ├── home.js         # Script for the home page modals and footer
-│   ├── home-auth.js    # Login/sign-up behaviour for home-page modals
-│   ├── login.js        # Login behaviour for login.html
-│   └── signup.js       # Sign-up behaviour for signup.html
-└── styles/
-    ├── cv.css          # Styles for the CV display page
-    ├── form.css        # Styles for the form page
-    ├── home.css        # Styles for the home page
-    └── login.css       # Styles for login/signup pages
-```
+# EazyCV
 
-### Backend Folder Tree
+Minimal full‑stack CV builder: FastAPI backend, React frontend. Local demo mode uses SQLite. Optional AI summary optimization via Google Gemini.
 
-The backend follows a modular and scalable structure, separating concerns into distinct services, data models, and database logic.
-
-```
-backend/
-├── main.py             # FastAPI application entry point
-├── requirements.txt    # Python package dependencies
-├── .env                # Environment variables (Gemini key and optional future config)
-├── database/
-│   ├── database.py     # SQLAlchemy engine and session setup (SQLite by default)
-│   └── supabase.py     # Legacy Supabase client placeholder (not used in local mode)
-├── models/
-│   └── cv.py           # SQLAlchemy ORM models for the database schema
-├── schemas/
-│   └── cv.py           # Pydantic schemas for data validation and serialization
-└── services/
-    ├── auth.py         # Demo-mode auth helper (single fixed user)
-    ├── cv.py           # Business logic for CV operations
-    └── gemini.py       # Logic for interacting with the Gemini API
-```
-
----
-
-## API & Data Flow
-
-The application flow is designed around a decoupled frontend and backend, with two modes of operation:
-
-- **Original Supabase-backed mode** (described in the original tutorial): full auth via Supabase and JWT verification on the backend.
-- **Local demo mode (current default in this repo):** no external auth provider, a single demo user, and purely local storage.
-
-### Local demo mode (default)
-
-1.  **Authentication & session:**
-    - Login and sign-up pages are implemented entirely on the frontend.
-    - When a user logs in or signs up, a simple flag and email are stored in `localStorage`.
-    - All requests are treated as belonging to a single demo user on the backend.
-
-2.  **CV Submission:**
-    - The user fills out the CV form on the `form.html` page.
-    - Upon submission, `form.js` sends a `POST` request to the backend's `/cvs/` endpoint with JSON data only (no auth header).
-
-3.  **AI Optimization:**
-    - On the `cv.html` page, the user can click the "Optimize with AI" button.
-    - The frontend sends a `POST` request to the `/cvs/{cv_id}/optimize` endpoint.
-    - The backend retrieves the CV data, sends it to the Gemini API for optimization, and stores the enhanced text in the database.
-    - The updated CV data (including the optimized summary) is returned to the frontend.
-
-4.  **CV Retrieval & Display:**
-    - When the `cv.html` page loads, it retrieves the current CV ID from `localStorage`.
-    - It sends a `GET` request to the `/cvs/{cv_id}` endpoint.
-    - The backend fetches the CV data from the database and returns it as a JSON response.
-    - The `cv.js` script parses the JSON and dynamically renders the CV content on the page.
-
-5.  **CV Download (PDF export):**
-    - On `cv.html`, the "Download / Print PDF" button exports the rendered CV to a PDF using `html2canvas` and `jsPDF` in the browser.
-    - The PDF reflects the on-screen layout of the `#cv-page` element so users can download their CV without using the browser's print dialog.
-
----
-
-## Database
-
-### Which database is used?
-
-For local development EazyCV uses a **file-based SQLite database**. The connection is configured in `backend/database/database.py` as:
-
-```python
-DATABASE_URL = "sqlite:///./eazycv.db"
-```
-
-This creates (or reuses) a file named `eazycv.db` in the project root directory. All CVs are stored in the `cvs` table defined by `backend/models/cv.py`.
-
-### Inspecting and manipulating the database
-
-You have a few options:
-
-1. **Using the sqlite3 CLI** (if installed on your system):
-
-   ```powershell
-   cd C:\Users\Rudolf\Downloads\eazycv
-   sqlite3 eazycv.db
-   .tables
-   PRAGMA table_info(cvs);
-   SELECT id, user_id, personal, experience, education, skills FROM cvs LIMIT 5;
-   ```
-
-   From there you can run standard SQL queries to inspect or modify data. Be careful when editing data directly.
-
-2. **Using Python and SQLAlchemy models**:
-
-   ```powershell
-   cd backend
-   ..\backend\venv\Scripts\python.exe
-   ```
-
-   Then inside the Python shell:
-
-   ```python
-   from database.database import SessionLocal
-   from models.cv import CV
-
-   db = SessionLocal()
-   print(db.query(CV).count())           # how many CVs
-   for cv in db.query(CV).limit(5):
-       print(cv.id, cv.user_id, cv.personal.get("name"))
-   db.close()
-   ```
-
-   You can also use normal SQLAlchemy operations here to update or delete rows if needed.
-
----
-
-## Users and authentication
-
-### Users in local demo mode
-
-In local demo mode, the backend uses a **single fixed demo user ID** internally. All CVs are associated with this user, regardless of who is "logged in" on the frontend. This keeps the setup simple and avoids managing real accounts.
-
-The `GET /users/` endpoint returns the distinct `user_id` values that have saved CVs. In demo mode this will typically look like:
-
-```json
-[
-  { "user_id": "00000000-0000-0000-0000-000000000001" }
-]
-```
-
-If you later extend the app to support multiple users, this endpoint will return more IDs.
-
-### Authentication pages and validation
-
-Authentication is implemented entirely on the frontend using `localStorage`. The pages are:
-
-- `index.html` modals (home page)
-- `login.html` standalone login page
-- `signup.html` standalone sign-up page
-
-All three share the same validation rules:
-
-- **Email**
-  - Required.
-  - Must match a basic pattern: `name@example.com` (checked with a simple regular expression).
-- **Password**
-  - Required.
-  - Must be at least 6 characters long.
-- **Confirm password** (sign-up only)
-  - Required on sign-up forms.
-  - Must exactly match the password field.
-
-On `login.html` and `signup.html`, validation errors are shown inline (`#error-message` or `#message`). On the home page modals, validation errors are shown via `alert(...)` so they are immediately visible even in a small dialog.
-
-When validation passes:
-
-- `localStorage.eazycv_logged_in` is set to `"true"`.
-- `localStorage.eazycv_user_email` is set to the entered email.
-- The user is redirected to `form.html`.
-
----
-
-## Getting Started
-
-Follow these instructions to set up and run the project on your local machine.
-
-### Prerequisites
-
-- Python 3.9+
-- A Google Gemini API key (only required if you want to use the "Optimize with AI" feature).
-
-Supabase and PostgreSQL are **not required** for the default local demo mode.
-
-### Backend Setup
-
-#### Quickstart (Windows / PowerShell)
-
-From the project root:
+Quick start
+- Backend (PowerShell):
 
 ```powershell
 cd backend
+python -m venv venv
+.\venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+uvicorn main:app --reload --port 8000
+```
+
+- Frontend (project root):
+
+```powershell
+cd react-app
+npm install
+npm run dev
+```
+
+Tests & CI
+- Run backend tests locally: `pip install -r backend/requirements.txt && pytest -q backend/tests`
+- CI: `.github/workflows/python-tests.yml` runs tests on push/PR.
+
+License: MIT
+
+Files of interest: `backend/main.py`, `backend/services/`, `backend/requirements.txt`, `react-app/src/`.
+
+Folder overview
+```
+backend/
+react-app/
+```
+---
+
+What this repo is
+- Small, production-ready CV builder: frontend collects CV data; backend persists it and offers an AI-driven summary optimizer.
+
+Core components
+- `react-app/` — React frontend (UI, form, export).
+- `backend/` — FastAPI service, SQLAlchemy models, Gemini integration.
+
+Quick start (backend)
+1. Create and activate venv (PowerShell):
+
+```powershell
+cd backend
+python -m venv venv
+.\venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+uvicorn main:app --reload --port 8000
+```
+
+Quick start (frontend)
+```powershell
+cd react-app
+npm install
+npm run dev
+```
+
+Testing
+- Run backend tests: `pip install -r backend/requirements.txt && pytest -q backend/tests`
+- CI: see `.github/workflows/python-tests.yml` (runs on push/PR).
+
+Files to inspect
+- `backend/main.py`, `backend/services/`, `backend/requirements.txt`, `react-app/src/`.
+
+License
+- MIT
+
+Contact
+- Open issues or PRs for changes.
+
 python -m venv venv
 .\venv\Scripts\Activate.ps1
 .\venv\Scripts\python.exe -m pip install -r requirements.txt
