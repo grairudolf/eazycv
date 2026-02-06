@@ -86,7 +86,18 @@ def optimize_cv(cv_id: int, db: Session = Depends(get_db)):
         raise HTTPException(status_code=400, detail="CV has no summary to optimize.")
 
     # Call the updated Gemini service
-    optimized_text = optimize_summary_with_gemini(summary_to_optimize)
+    try:
+        optimized_text = optimize_summary_with_gemini(summary_to_optimize)
+    except RuntimeError as exc:
+        message = str(exc)
+        if message.startswith("GEMINI_API_KEY is not set"):
+            raise HTTPException(status_code=503, detail=message) from exc
+        raise HTTPException(status_code=502, detail=message) from exc
+    except Exception as exc:
+        raise HTTPException(
+            status_code=502,
+            detail="Gemini API request failed. Check server logs for details."
+        ) from exc
 
     # Update the CV with the new, optimized summary
     return update_cv_with_optimization(db=db, cv_id=cv_id, optimized_text=optimized_text)

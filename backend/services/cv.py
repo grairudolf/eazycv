@@ -5,9 +5,9 @@ from schemas.cv import CVSchemaCreate
 def create_cv(db: Session, cv: CVSchemaCreate, user_id: str):
     db_cv = CV(
         user_id=user_id,
-        personal=cv.personal.dict(),
-        experience=[exp.dict() for exp in cv.experience],
-        education=[edu.dict() for edu in cv.education],
+        personal=cv.personal.model_dump(),
+        experience=[exp.model_dump() for exp in cv.experience],
+        education=[edu.model_dump() for edu in cv.education],
         skills=cv.skills
     )
     db.add(db_cv)

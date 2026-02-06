@@ -1,0 +1,23 @@
+version: "3.9"
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    env_file:
+      - backend/.env
+    environment:
+      - DATABASE_URL=sqlite:///./eazycv.db
+    ports:
+      - "8000:8000"
+  frontend:
+    build:
+      context: react-app
+      dockerfile: Dockerfile
+    ports:
+      - "5173:80"
+    environment:
+      - VITE_API_BASE=http://backend:8000
+    depends_on:
+      - backend

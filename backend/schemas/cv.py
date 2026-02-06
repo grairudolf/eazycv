@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 from typing import List, Optional
 
 class PersonalInfo(BaseModel):
@@ -8,6 +8,7 @@ class PersonalInfo(BaseModel):
     phone: str
     location: str
     website: Optional[str] = None
+    linkedin: Optional[str] = None
     summary: str
 
 class Experience(BaseModel):
@@ -35,5 +36,4 @@ class CVSchema(CVSchemaCreate):
     user_id: str
     optimized_cv: Optional[str] = None
 
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)

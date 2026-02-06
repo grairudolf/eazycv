@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import "../Components/Hbody.css"
 
 export default function HBody() {
   return (
