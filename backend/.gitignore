@@ -10,3 +10,6 @@ venv/
 # IDE and OS files
 .idea/
 .DS_Store
+
+# Environment Variables
+.env .env-Local
